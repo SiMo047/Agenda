@@ -16,8 +16,10 @@ class CategoriaFactory extends Factory
      */
     public function definition(): array
     {
+        
+        $categorias=['Cine','Teatro','Musica','Aire Libre','Gaming','Magia'];
         return [
-            //
+            'nombre'=>$this->faker->unique->randomElement($categorias),
         ];
     }
 }

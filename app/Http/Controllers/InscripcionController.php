@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Inscripcion;
+use App\Models\Evento;
 
 use Illuminate\Http\Request;
 
@@ -43,7 +44,10 @@ class InscripcionController extends Controller
 
        $inscripcion->save();
 
-        return view('web.detalle_evento',compact('evento','inscripcion'));
+       $usuario=auth()->user();
+       $registrado=Inscripcion::where('asistente_id',$usuario->id)->where('evento_id',$evento->id)->exists();
+
+        return view('web.detalle_evento',compact('evento','inscripcion','registrado'));
 
     }
 
